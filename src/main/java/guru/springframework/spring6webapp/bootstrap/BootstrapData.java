@@ -6,12 +6,15 @@ import guru.springframework.spring6webapp.domain.Publisher;
 import guru.springframework.spring6webapp.repositories.AuthorRepository;
 import guru.springframework.spring6webapp.repositories.BookRepository;
 import guru.springframework.spring6webapp.repositories.PublisherRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootstrapData implements CommandLineRunner {
 
+    @Value("${myhostname}")
+    String myName;
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
@@ -35,8 +38,8 @@ public class BootstrapData implements CommandLineRunner {
         Publisher savedWiley = publisherRepository.save(wiley);
 
         Author kushan = new Author();
-        kushan.setFirstName("Kushan");
-        kushan.setLastName("Jayathilake");
+        kushan.setFirstName("Shawn");
+        kushan.setLastName("Jayz");
 
         Author saveKushan = authorRepository.save(kushan);
 
@@ -75,7 +78,7 @@ public class BootstrapData implements CommandLineRunner {
         System.out.println("In Bootstrap.....");
         System.out.println("BookRepo count : " + bookRepository.count());
         System.out.println("AuthorRepo count : " + authorRepository.count());
-
+        System.out.println("myname  from ENV : " + myName);
 
 
         System.out.println("Publisher count : " +publisherRepository.count());
